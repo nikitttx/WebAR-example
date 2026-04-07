@@ -162,20 +162,20 @@
                 // Масив файлів моделей, якщо немає моделі буде додано порожній рядок
                 const modelFiles = ["" ,"" ,""];
                 // Масив файлів зображень, якщо немає зображення буде додано також порожній рядок
-                const imageFiles = ["pattern-images.png" ,"2_author.jpg" ,"3_machine.jpg"];
+                const imageFiles = ["1_student.jpg" ,"2_author.jpg" ,"3_machine.jpg"];
                 // Масив файлів відео, якщо немає відео буде ще один порожній рядок
                 const videoFiles = ["" ,"" ,""];
                 // Масив файлів аудіо, якщо немає аудіо буде так само порожній рядок
                 const audioFiles = ["1_student.mp3" ,"2_author.mp3" ,"3_machine.mp3"];
                 // Масив опцій повтору аудіо та відео контенту, по дефолту для всіх буде false
                 const repeatOptions = ["false" ,"false" ,"false"];
-
+  
                 // Створюємо масив для всіх маркерів
                 const markerRoots = [];
                 for (let i = 0; i < 3; i++) {
                     markerRoots[i] = new THREE.Group();
                 }
-
+  
                 // Проходимо по кожному маркеру з масиву і додаємо його в головний контейнер
                 for (let i = 0; i < 3; i++) {
                     mainContainer.add(markerRoots[i]);
@@ -189,11 +189,9 @@
                         patternsID.push(patternNames[i]);
                     } else {
                         let markerControls1 = new THREEx.ArMarkerControls(arToolkitContext, markerRoots[i], {
-                            type: 'pattern',
-                            patternUrl: 'pattern-images.patt',
-                            size: 1 + (i + 1) / patternIdOffset
-                        });
-                        patternsID.push('my-marker.patt');
+                            type: "barcode", barcodeValue: patternBarcode[i],
+                        })
+                        barcodesID.push(patternBarcode[i]);
                     }
 
                     // Використовуємо switch для роботи з кожним окремим випадком контенту
